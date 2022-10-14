@@ -1,29 +1,29 @@
 import livros from "../models/Livro.js";
 
-class LivroController {
-    static listarLivros = (req, res) => {
-        livros.find((err, livros) => {
-            res.status(200).json(livros);
+class AutoresController {
+    static listarAutores = (req, res) => {
+        autores.find((err, autores) => {
+            res.status(200).json(autores);
         });
     }
 
-    static listarLivroPorId = (req, res) => {
+    static listarAutorPorId = (req, res) => {
         const id = req.params.abobora;
 
-        livros.findById(id, (err, livros) => {
+        autores.findById(id, (err, autores) => {
             if(!err) {
-                res.status(200).json(livros);
+                res.status(200).json(autores);
             }
             else {
-                res.status(400).send({message: `${err.message} - Livro ${id} não encontrado.`})
+                res.status(400).send({message: `${err.message} - Autor ${id} não encontrado.`})
             }
         });
     }
 
-    static cadastrarLivro = (req, res) => {
-        let livro = new livros(req.body);
+    static cadastrarAutor = (req, res) => {
+        let autor = new autores(req.body);
 
-        livro.save((err) => {
+        autor.save((err) => {
             if(err) {
                 res.status(500).send({message: `${err.message} - falha ao cadastrar o livro`});
             }
