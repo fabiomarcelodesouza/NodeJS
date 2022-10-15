@@ -1,6 +1,6 @@
-import livros from "../models/Livro.js";
+import autores from "../models/Autor.js";
 
-class AutoresController {
+class AutorController {
     static listarAutores = (req, res) => {
         autores.find((err, autores) => {
             res.status(200).json(autores);
@@ -25,40 +25,40 @@ class AutoresController {
 
         autor.save((err) => {
             if(err) {
-                res.status(500).send({message: `${err.message} - falha ao cadastrar o livro`});
+                res.status(500).send({message: `${err.message} - falha ao cadastrar o autor`});
             }
             else {
-                res.status(201).send(livro.toJSON());
+                res.status(201).send(autor.toJSON());
             }
         });
     }
 
-    static atualizarLivro = (req, res) => {
+    static atualizarAutor = (req, res) => {
         const id = req.params.id;
 
-        livros.findByIdAndUpdate(id, {$set: req.body}, (err) => {
+        autores.findByIdAndUpdate(id, {$set: req.body}, (err) => {
             if(!err) {
-                res.status(200).send({message: `Livro ${id} atualizado com sucesso.`});
+                res.status(200).send({message: `Autor ${id} atualizado com sucesso.`});
             }
             else {
-                res.status(500).send({message: `${err.message} - falha ao atualizar o livro ${id}.`})
+                res.status(500).send({message: `${err.message} - falha ao atualizar o autor ${id}.`})
             }
         });
     }
 
-    static excluirLivro = (req, res) => {
+    static excluirAutor = (req, res) => {
         const id = req.params.id;
 
-        livros.findByIdAndDelete(id, (err) => {
+        autores.findByIdAndDelete(id, (err) => {
             if(!err) {
-                res.status(200).send({message: `Livro ${id} excluido com sucesso.`});
+                res.status(200).send({message: `Autor ${id} excluido com sucesso.`});
             }
             else {
-                res.status(500).send({message: `${err.message} - falha ao excluir o livro ${id}.`})
+                res.status(500).send({message: `${err.message} - falha ao excluir o autor ${id}.`})
             }
         });
     }
 }
 
 
-export default LivroController;
+export default AutorController;
