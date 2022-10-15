@@ -33,7 +33,7 @@ class LivroController {
             }
             else {
                 res.status(201).send(livro.toJSON());
-            }
+            } 
         });
     }
 
