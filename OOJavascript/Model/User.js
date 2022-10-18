@@ -12,17 +12,46 @@ export default class User {
         this.#ativo = ativo
     }
 
-    #montaObjUser() {
-        return ({
-            nome: this.#nome,
-            email: this.#email,
-            nascimento: this.#nascimento,
-            role: this.#role,
-            ativo: this.#ativo
-        })
+    get nome() {
+        return this.#nome
     }
-    
-    exibirInfos() {
-        return this.#montaObjUser()
+    set nome(nome) {
+        if (nome === '') {
+            throw new Error('Nome não pode ser vazio')
+        }
+
+        this.#nome = nome;
+    }    
+
+    get email() {
+        return this.#email
+    }
+    set email(email) {
+        this.#email = email;
+    }
+
+    get nascimento() {
+        return this.#nascimento
+    }
+    set nascimento(nascimento) {
+        this.#nascimento = nascimento;
+    }
+
+    get role() {
+        return this.#role
+    }
+    set role(role) {
+        this.#role = role;
+    }
+     
+    get ativo() {
+        return this.#ativo
+    }    
+    set ativo(ativo) {
+        this.#ativo = ativo;
+    }
+        
+    exibirInfos() {        
+        return `${this.nome}, ${this.email}, ${this.nascimento}, ${this.role}, ${this.ativo}`
     }
 }
