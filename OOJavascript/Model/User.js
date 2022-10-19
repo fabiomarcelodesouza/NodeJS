@@ -1,11 +1,13 @@
 export default class User {
     #nome
+    #sobrenome
     #email
     #nascimento
     #role
     #ativo
-    constructor(nome, email, nascimento, role, ativo = true) {
+    constructor(nome, sobrenome, email, nascimento, role, ativo = true) {
         this.#nome = nome,
+        this.#sobrenome = sobrenome,
         this.#email = email,
         this.#nascimento = nascimento,
         this.#role = role || 'estudante',
@@ -13,14 +15,23 @@ export default class User {
     }
 
     get nome() {
-        return this.#nome
+        return `${this.#nome} ${this.#sobrenome}`
     }
-    set nome(nome) {
-        if (nome === '') {
+     
+    get sobrenome() {
+        return this.#sobrenome
+    }
+
+    set nome(novoNome) {
+        if (novoNome === '') {
             throw new Error('Nome não pode ser vazio')
         }
 
-        this.#nome = nome;
+        let [nome, ...sobrenome] = novoNome.split(" ")
+        sobrenome = sobrenome.join(' ')
+
+        this.#nome = nome
+        this.#sobrenome = sobrenome
     }    
 
     get email() {
@@ -49,9 +60,9 @@ export default class User {
     }    
     set ativo(ativo) {
         this.#ativo = ativo;
-    }
-        
-    exibirInfos() {        
-        return `${this.nome}, ${this.email}, ${this.nascimento}, ${this.role}, ${this.ativo}`
+    }    
+    
+    exibirInfos(label) {        
+        return `${label}: ${this.nome}, ${this.email}, ${this.nascimento}, ${this.role}, ${this.ativo}`
     }
 }
